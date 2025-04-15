@@ -1,0 +1,12 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.galvinvoltag.nomann",
+        "sha256_cert_fingerprints": [
+          "AA:5B:BC:8C:5D:68:C5:DE:D5:D3:9B:D1:66:56:F9:99:38:10:67:E5:DA:8B:20:2F:8B:AC:85:18:5A:58:F0:DD"
+        ]
+      }
+    }
+  ]

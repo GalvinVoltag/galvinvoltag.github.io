@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>L.I.N.K</title>
+    <meta property="al:android:url" content="https://galvinvoltag.github.io/galvinvoltag.com/note">
+    <meta property="al:android:package" content="com.galvinvoltag.nomann">
+    <meta property="al:android:app_name" content="Nomann Notes">
+</head>
+<body>
+    <h1>you should not be here!</h1>
+    <p id="demo"></p>
+    <p id="dmm"></p>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const title = urlParams.get('title');
+        const notes = urlParams.get('notes');
+
+        const appSchemePrc = "nomann://note"
+
+        appScheme = appSchemePrc.concat('/title=', title, "/notes=", notes);
+        document.getElementById("demo").innerHTML = appScheme;
+        document.getElementById("dmm").innerHTML = "donut";
+        window.location.href = appScheme;  // Try to open the app
+    </script>
+</body>
+</html>
