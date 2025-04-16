@@ -83,11 +83,13 @@ body {
 @keyframes fadein {
   0% {
     background-position: 100% 0%;
-    margin-top: 180px;
+    margin-top: 0px;
+    opacity: 0%;
   }
   100%{
     background-position: 100% 100%;
-    margin-top: 330px;
+    margin-top: 230px;
+    opacity: 100%;
   }
 }
 
@@ -98,7 +100,7 @@ body {
   border-top: none;
   /* color: rgb(224, 218, 230); */
   color :white;
-  margin-top: 330px;
+  margin-top: 230px;
   background: linear-gradient(200deg, transparent, transparent 40%, rgba(200, 0, 255, 0.25) 45%, #ececec 60%, #ececec 100%); 
   background-size: 100% 300%;
   background-position: 100% 100%;
@@ -108,7 +110,7 @@ body {
   animation-duration: 1.8s;
   text-align: center;
   font-size: 20px;
-  line-height: 5px;
+  line-height: 1.3rem;
 }
 
 .hidden {
@@ -171,15 +173,23 @@ body {
 @keyframes bgmove {
   0% {
     background-position: 0% 0%;
+    
   }
   100%{
     background-position: 2000% 0%;
   }
 }
 
-header { 
+.mainheader { 
   background-color: #333;
-  background-image: linear-gradient(45deg, rgb(11, 11, 11), #333, rgb(11, 11, 11), rgb(42, 0, 71), rgb(11, 11, 11), rgb(60, 0, 60), rgb(11, 11, 11));
+  background-image: linear-gradient(45deg,
+  rgb(11, 11, 11),
+  #333,
+  rgb(11, 11, 11),
+  rgb(76, 10, 77),
+  rgb(45, 34, 34),
+  rgb(100, 60, 0),
+  rgb(11, 11, 11));
   background-size: 2000% 100%;
   background-position: 0% 0%;
   color: #fff;
@@ -248,4 +258,27 @@ main {
 
 section {
   margin-bottom: 20px;
+}
+
+
+
+.story_type {
+  width: 13rem; height: 13rem; margin: 2rem;
+  background:unset;
+  color:unset;
+  -webkit-text-fill-color: black;
+  -webkit-background-clip: unset;
+  animation-name: unset;
+  animation-duration: unset;
+  text-align: center;
+  border-radius: 4px;
+  transition: 0.4s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.444);
+  user-select: none;
+}
+
+.story_type:hover {
+  transition: 0.6s;
+  width: 14rem; height: 14rem; margin: 1.46rem;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.737);
 }

@@ -1,0 +1,13 @@
+{
+    "Authors": ["Galvin A. Voltag"],
+    "stories": [
+        {
+            "title":"Organic Intruder",
+            "genre": ["Thriller"],
+            "path": "F\\Robot_Heart",
+            "Authors": [0],
+            "type": "F",
+            "summary": "An unassuming victim blindly walks through the corpse of a mechanical building, to their death."
+        }
+    ]
+}
