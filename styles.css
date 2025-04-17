@@ -161,7 +161,7 @@ body {
 
 .tablink_active {
   background-color: #1f1f1f;
-  transform: translateY(10px);
+  transform: translateY(8px);
 }
 
 .fixed {
@@ -281,4 +281,30 @@ section {
   transition: 0.6s;
   width: 14rem; height: 14rem; margin: 1.46rem;
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.737);
+}
+
+
+
+
+.story_board {
+  background-color: #ececec;
+  border-radius: 32px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  color:#1f1f1f;
+  height: 200px; width: 666px;
+  margin-top: 66px;
+  margin-left: 0px;
+  user-select: none;
+  transition: 0.8s;
+}
+
+.story_board a, .story_board a:visited {
+  color:#1f1f1f;
+}
+
+.story_board:hover {
+  transition: 0.4s;
+  height: 200px; width: 777px;
+  border-radius: 42px;
 }

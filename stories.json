@@ -1,0 +1,39 @@
+{
+    "authors": [
+        {
+            "id": 0,
+            "name": "Galvin A. Voltag",
+            "bio": "I, Galvin Voltag, have a dream.... I want one million dollars.",
+            "pic": "Pics\\GalvinJOJO.jpeg"
+        }
+    ],
+    "note to me": "cover_image: Pics\\[type]\\name.jpeg; path: [type]\\name.md",
+    "F": [
+        {
+            "id": 0,
+            "title":"Organic Intruder",
+            "cover_image": "Robot_Heart.jpeg",
+            "summary": "An unassuming victim blindly walks through the corpse of a mechanical building, to their death.",
+            "path": "Robot_Heart.md",
+            "genres": ["Thriller", "Sci-Fi"],
+            "tags": ["prime_timeline_2nd", "canon", "Earth", "standalone"],
+            "spoilers": [],
+            "authors": [0],
+            "date": "2025-4-13",
+            "word_count": 1200
+        },
+        {
+            "id": 1,
+            "title":"Testing initiative",
+            "cover_image": "Test.jpeg",
+            "summary": "Somone has woken up to a strange world where nothing makes sense and everything is deadly",
+            "path": "Test.md",
+            "genres": ["Thriller", "Sci-Fi"],
+            "tags": ["pocket_dimension", "non-canon", "standalone"],
+            "spoilers": [],
+            "authors": [0],
+            "date": "2025-4-17",
+            "word_count": 300
+        }
+    ]
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>GalvinVoltag's stories</title>
+  <link rel="icon" type="image/x-icon" href="https://cdn.bsky.app/img/avatar/plain/did:plc:kak2dhoazdednytmbpwx7bpd/bafkreigaclnxmmwsmbpi4fy55bxo66ripbjyntlh5mqkb6b3tj74ocdo2e@jpeg">
+</head>
+
+<body>
+    <p id="st" class="hidden"></p>
+
+    <div id="story_typer" style="color:white; background-color: black; padding: 45px; text-align: center;">
+        Loading...
+    </div>
+
+    <main id="story_list" style="width: 100%; align-content: center; display:block;">
+        <!-- <div class="story_board" style="height: 200px; width: 66%;">
+            
+        </div> -->
+    </main>
+</body>
+
+<script>
+    async function getAll() {
+        const path = "./stories.json";
+        try {
+            const res = await fetch(path);
+            if (!res.ok)  {
+                throw new Error('response status: ${res.status}')
+            }
+            const json = await res.json();
+            return json;
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+
+    function getTemplate(story) {
+        return `
+        <div class="story_board">
+            <a href="./reading.html">
+            <div style="display:inline-block">
+                <img src="${"F\\Pics\\" + story.cover_image}" style="float:left; height:160px; width:160px; margin:18px; margin-bottom: 0px;"><img>
+                <p style="font-size: 12px; margin-left:33%; margin-top:4px; color: #00000077;">${story.date}</p>
+            </div>
+            <div style="float:right;">
+                <h1 style="margin-top: 15px;">${story.title}</h1>
+                <div style=" width: 440px ; word-wrap: break-word;">${story.summary}</div>
+                <div style=" width: 200px; word-wrap: break-word; font-size: 14px; color: #0077ff;">genres:${story.genres.toString().replace(/,/g, " ")}</div>
+                <div style=" width: 200px; word-wrap: break-word; font-size: 14px; color: #ee7766">tags:${story.tags.toString().replace(/,/g, " ")}</div>
+            </div>
+            </a>
+        </div>`
+        // return `
+        // <div class="story-card">
+        //     <img src="${story.cover_image}" alt="${story.title} cover">
+        //     <h3>${story.title}</h3>
+        //     <div class="genre-tags">
+        //     ${story.genres.map(genre => `<span class="tag">${genre}</span>`).join('')}
+        //     </div>
+        //     <p class="summary">${story.summary}</p>
+        //     <div class="story-meta">
+        //     <span class="word-count">${story.word_count} words</span>
+        //     <span class="date">${story.date}</span>
+        //     </div>
+        // </div>
+        // `;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    var type = urlParams.get('type');
+    document.getElementById("st").innerText = type;
+    switch(type) {
+        case "F": type = "Flash Fiction"; break;
+        case "S": type = "Short Story"; break;
+        case "C": type = "Comic"; break;
+        case "N": type = "Novella"; break;
+        case "O": type = "Other"; break;
+    }
+    document.getElementById("story_typer").textContent = "This website is for " + type;
+    getAll().then(data => {
+        data[document.getElementById("st").innerText].forEach(element => {
+            console.log(element)
+            document.getElementById("story_list").innerHTML += (getTemplate((element)));
+        });
+    })
+    
+</script>
