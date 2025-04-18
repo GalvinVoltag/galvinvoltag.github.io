@@ -265,6 +265,7 @@ section {
 
 
 .story_type {
+  cursor: pointer;
   width: 13rem; height: 13rem; margin: 2rem;
   background:unset;
   color:unset;
@@ -299,6 +300,7 @@ section {
   margin-left: 0px;
   user-select: none;
   transition: 0.8s;
+  cursor: pointer;
 }
 
 .story_board a, .story_board a:visited {

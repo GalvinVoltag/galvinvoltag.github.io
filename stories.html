@@ -41,8 +41,7 @@
 
     function getTemplate(story) {
         return `
-        <div class="story_board">
-            <a href="./reading.html?type=${story.path}">
+        <div class="story_board" onclick="location.href='./reading.html?type=${story.path}'">
             <div style="display:inline-block">
                 <img src="${story.cover_image}" style="float:left; height:160px; width:160px; margin:18px; margin-bottom: 0px;"><img>
                 <p style="font-size: 12px; margin-left:33%; margin-top:4px; color: #00000077;">${story.date}</p>
@@ -53,7 +52,6 @@
                 <div style=" width: 200px; word-wrap: break-word; font-size: 14px; color: #0077ff;">genres:${story.genres.toString().replace(/,/g, " ")}</div>
                 <div style=" width: 200px; word-wrap: break-word; font-size: 14px; color: #ee7766">tags:${story.tags.toString().replace(/,/g, " ")}</div>
             </div>
-            </a>
         </div>`
     }
 
