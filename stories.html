@@ -42,9 +42,9 @@
     function getTemplate(story) {
         return `
         <div class="story_board">
-            <a href="./reading.html">
+            <a href="./reading.html?type=${story.path}">
             <div style="display:inline-block">
-                <img src="${"F\\Pics\\" + story.cover_image}" style="float:left; height:160px; width:160px; margin:18px; margin-bottom: 0px;"><img>
+                <img src="${story.cover_image}" style="float:left; height:160px; width:160px; margin:18px; margin-bottom: 0px;"><img>
                 <p style="font-size: 12px; margin-left:33%; margin-top:4px; color: #00000077;">${story.date}</p>
             </div>
             <div style="float:right;">
@@ -55,20 +55,6 @@
             </div>
             </a>
         </div>`
-        // return `
-        // <div class="story-card">
-        //     <img src="${story.cover_image}" alt="${story.title} cover">
-        //     <h3>${story.title}</h3>
-        //     <div class="genre-tags">
-        //     ${story.genres.map(genre => `<span class="tag">${genre}</span>`).join('')}
-        //     </div>
-        //     <p class="summary">${story.summary}</p>
-        //     <div class="story-meta">
-        //     <span class="word-count">${story.word_count} words</span>
-        //     <span class="date">${story.date}</span>
-        //     </div>
-        // </div>
-        // `;
     }
 
     const urlParams = new URLSearchParams(window.location.search);

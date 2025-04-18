@@ -6,6 +6,8 @@ body::-webkit-scrollbar {
 html, body {
   scroll-behavior: smooth;
   height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   margin: 0;
 }
 

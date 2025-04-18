@@ -7,12 +7,11 @@
             "pic": "Pics\\GalvinJOJO.jpeg"
         }
     ],
-    "note to me": "cover_image: Pics\\[type]\\name.jpeg; path: [type]\\name.md",
     "F": [
         {
             "id": 0,
             "title":"Organic Intruder",
-            "cover_image": "Robot_Heart.jpeg",
+            "cover_image": "https://i.pinimg.com/736x/66/0d/76/660d768b6896f6c6110abf24e86c3063.jpg",
             "summary": "An unassuming victim blindly walks through the corpse of a mechanical building, to their death.",
             "path": "Robot_Heart.md",
             "genres": ["Thriller", "Sci-Fi"],
@@ -33,6 +32,19 @@
             "spoilers": [],
             "authors": [0],
             "date": "2025-4-17",
+            "word_count": 300
+        },
+        {
+            "id": 1,
+            "title":"The Silver Ring",
+            "cover_image": "Test.jpeg",
+            "summary": "Bravery of the foolish, somewhat useful in many cases, but may also cause a painful death.",
+            "path": "Test.md",
+            "genres": ["Thriller", "Sci-Fi"],
+            "tags": ["pocket_dimension", "non-canon", "standalone"],
+            "spoilers": [],
+            "authors": [0],
+            "date": "2025-4-20",
             "word_count": 300
         }
     ]
