@@ -12,14 +12,13 @@
 <body>
     <p id="st" class="hidden"></p>
 
+    
     <div id="story_typer" style="color:white; background-color: black; padding: 45px; text-align: center;">
         Loading...
     </div>
 
     <main id="story_list" style="width: 100%; align-content: center; display:block;">
-        <!-- <div class="story_board" style="height: 200px; width: 66%;">
-            
-        </div> -->
+        
     </main>
 </body>
 
@@ -39,18 +38,34 @@
     }
 
 
-    function getTemplate(story) {
+    function getTemplate(story, author_list) {
+        var tags_text = "";
+        var gens_text = "";
+        var auths_text = "";
+        var ss = "-";
+        story.tags.forEach(element => {
+            tags_text += "<p>" + element + "</p> "
+        });
+        story.genres.forEach(element => {
+            gens_text += "<p>" + element + "</p>"
+        });
+        story.authors.forEach(element => {
+            if (ss=="-") ss = "";
+            else if (ss=="") ss = "s";
+            auths_text += "<a href='./authors.html' class='tippedtext'>" + author_list[element].name + "<span class='tip'><img src='" + author_list[element].pic + "'>" + author_list[element].bio + "</span></a> "
+        });
         return `
-        <div class="story_board" onclick="location.href='./reading.html?type=${story.path}'">
-            <div style="display:inline-block">
+        <div class="story_board" onclick="location.href='./reading.html?st=${story.path}'">
+            <div style="display:inline-block;">
                 <img src="${story.cover_image}" style="float:left; height:160px; width:160px; margin:18px; margin-bottom: 0px;"><img>
-                <p style="font-size: 12px; margin-left:33%; margin-top:4px; color: #00000077;">${story.date}</p>
+                <p style="font-size: 12px; margin-left:33%; margin-top:4px; color: #00000077; display: block;">${story.date}</p>
             </div>
-            <div style="float:right;">
-                <h1 style="margin-top: 15px;">${story.title}</h1>
-                <div style=" width: 440px ; word-wrap: break-word;">${story.summary}</div>
-                <div style=" width: 200px; word-wrap: break-word; font-size: 14px; color: #0077ff;">genres:${story.genres.toString().replace(/,/g, " ")}</div>
-                <div style=" width: 200px; word-wrap: break-word; font-size: 14px; color: #ee7766">tags:${story.tags.toString().replace(/,/g, " ")}</div>
+            <div style="float:right; width: 70%; height: 100%;">
+                <h1 style="margin-top: 14px; margin-bottom: 8px;">${story.title}</h1>
+                <div id="sum">${story.summary}</div>
+                <div id="g" style="color: #0077ff;">genres: ${gens_text} </div>
+                <div style="color: #ee7766;">tags:${tags_text}</div>
+                <div style="color: #6f6f6f;">Author${ss}: ${auths_text} </div>
             </div>
         </div>`
     }
@@ -68,8 +83,8 @@
     document.getElementById("story_typer").textContent = "This website is for " + type;
     getAll().then(data => {
         data[document.getElementById("st").innerText].forEach(element => {
-            console.log(element)
-            document.getElementById("story_list").innerHTML += (getTemplate((element)));
+            console.log(data.authors)
+            document.getElementById("story_list").innerHTML += (getTemplate((element), data.authors));
         });
     })
     

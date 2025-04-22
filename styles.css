@@ -117,6 +117,7 @@ body {
 
 .hidden {
   display: none !important;
+  opacity: 0%;
 }
 
 .tab_row {
@@ -262,6 +263,49 @@ section {
   margin-bottom: 20px;
 }
 
+.tippedtext {
+  text-decoration: none;
+  color: #565656 !important;
+  margin-left: 5px;
+}
+.tippedtext:hover {
+  text-decoration: underline;
+}
+
+.tip {
+  visibility: hidden;
+  opacity: 0%;
+  transition: 0.4s;
+  position: absolute;
+  transform: translate(-12rem, 24px);
+  background-color: #323232;
+  color: #cfcfcf;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 4px;
+  max-width: 400px;
+  border-radius: 4px;
+  z-index: 200;
+}
+
+.tip img {
+  height: 2rem;
+  margin-top: 5px;
+}
+
+.tippedtext:hover .tip {
+  visibility: visible;
+  opacity: 90%;
+}
+
+
+
+
+
+
+
+
+
 
 
 .story_type {
@@ -301,6 +345,34 @@ section {
   user-select: none;
   transition: 0.8s;
   cursor: pointer;
+  overflow: hidden;
+}
+
+.story_board div div {
+  line-height: 20px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.story_board div div p {
+  color: white !important;
+  background-color: rgb(234, 111, 67);
+  display: inline;
+  border-radius: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 1px;
+  margin-left: 5px;
+}
+
+#g p {
+  background-color: rgb(96, 96, 212);
+}
+
+.story_board #sum {
+  border-radius: 8px;
+  padding-left: 4px;
+  width: 450px;
 }
 
 .story_board a, .story_board a:visited {

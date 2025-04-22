@@ -2,20 +2,26 @@
     "authors": [
         {
             "id": 0,
-            "name": "Galvin A. Voltag",
-            "bio": "I, Galvin Voltag, have a dream.... I want one million dollars.",
-            "pic": "Pics\\GalvinJOJO.jpeg"
+            "name": "<c style='color:#ff7700'>Galvin A. Voltag</c>",
+            "bio": " I, Galvin Voltag, have a dream.... I want one million dollars.",
+            "pic": "https://cdn.bsky.app/img/avatar/plain/did:plc:kak2dhoazdednytmbpwx7bpd/bafkreigaclnxmmwsmbpi4fy55bxo66ripbjyntlh5mqkb6b3tj74ocdo2e@jpeg"
+        },
+        {
+            "id": 1,
+            "name": "Anonymous",
+            "bio": " I would like my identity to not be seen",
+            "pic": "https://figurerealm.com/userimages/characterprofiles/3000/2977-1-5b025b5a20bbf.jpg"
         }
     ],
     "F": [
         {
             "id": 0,
             "title":"Organic Intruder",
-            "cover_image": "https://i.pinimg.com/736x/66/0d/76/660d768b6896f6c6110abf24e86c3063.jpg",
+            "cover_image": "./Pics/F/Landpp.png",
             "summary": "An unassuming victim blindly walks through the corpse of a mechanical building, to their death.",
-            "path": "Robot_Heart.md",
+            "path": "./F/Robot_Heart.html",
             "genres": ["Thriller", "Sci-Fi"],
-            "tags": ["prime_timeline_2nd", "canon", "Earth", "standalone"],
+            "tags": ["main_timeline", "canon", "Earth", "standalone"],
             "spoilers": [],
             "authors": [0],
             "date": "2025-4-13",
@@ -25,25 +31,25 @@
             "id": 1,
             "title":"Testing initiative",
             "cover_image": "Test.jpeg",
-            "summary": "Somone has woken up to a strange world where nothing makes sense and everything is deadly",
+            "summary": "Another ordinary test simulation. [TEST PLACEHOLDER]",
             "path": "Test.md",
             "genres": ["Thriller", "Sci-Fi"],
-            "tags": ["pocket_dimension", "non-canon", "standalone"],
+            "tags": ["non-canon", "standalone"],
             "spoilers": [],
-            "authors": [0],
+            "authors": [0, 1],
             "date": "2025-4-17",
             "word_count": 300
         },
         {
-            "id": 1,
+            "id": 2,
             "title":"The Silver Ring",
             "cover_image": "Test.jpeg",
-            "summary": "Bravery of the foolish, somewhat useful in many cases, but may also cause a painful death.",
+            "summary": "Bravery of the foolish, somewhat useful in many cases, but may also cause a painful death. [TEST PLACEHOLDER]",
             "path": "Test.md",
-            "genres": ["Thriller", "Sci-Fi"],
-            "tags": ["pocket_dimension", "non-canon", "standalone"],
+            "genres": ["Thriller", "Fantasy/Sci-fi"],
+            "tags": ["non-canon", "standalone"],
             "spoilers": [],
-            "authors": [0],
+            "authors": [1],
             "date": "2025-4-20",
             "word_count": 300
         }
