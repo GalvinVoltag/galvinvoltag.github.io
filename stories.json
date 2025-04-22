@@ -30,7 +30,7 @@
         {
             "id": 1,
             "title":"Testing initiative",
-            "cover_image": "Test.jpeg",
+            "cover_image": "https://www.svgrepo.com/show/508699/landscape-placeholder.svg",
             "summary": "Another ordinary test simulation. [TEST PLACEHOLDER]",
             "path": "Test.md",
             "genres": ["Thriller", "Sci-Fi"],
@@ -43,7 +43,7 @@
         {
             "id": 2,
             "title":"The Silver Ring",
-            "cover_image": "Test.jpeg",
+            "cover_image": "https://www.svgrepo.com/show/508699/landscape-placeholder.svg",
             "summary": "Bravery of the foolish, somewhat useful in many cases, but may also cause a painful death. [TEST PLACEHOLDER]",
             "path": "Test.md",
             "genres": ["Thriller", "Fantasy/Sci-fi"],
