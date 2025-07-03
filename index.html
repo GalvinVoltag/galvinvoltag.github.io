@@ -9,39 +9,46 @@
   <link rel="icon" type="image/x-icon" href="https://cdn.bsky.app/img/avatar/plain/did:plc:kak2dhoazdednytmbpwx7bpd/bafkreigaclnxmmwsmbpi4fy55bxo66ripbjyntlh5mqkb6b3tj74ocdo2e@jpeg">
 </head>
 <body>
-
-  <header class="mainheader" style="z-index: 10; overflow: hidden;">
+  <style>
+    .loading {
+      background-color: rgb(22, 20, 20);
+      color: beige;
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+      align-content: center;
+      text-align: center;
+      left: 0px;
+      top: 0px;
+    }
+  </style>
+  <div class="loading">
+    ...
+  </div>
+  <header class="slideshow-colors" style="z-index: 10; overflow: hidden;">
     <div>
-      <div style="position: relative; text-align: center;">
-        <img class="title_image" src="web_logo.png">
-        <h1 id="dynamic_title">GALVIN VOLTAG<p style="font-size: 12px;">welcome to my website</p></h1>
-      </div>  
+      <h1>GALVIN VOLTAG<div>welcome to my website</div></h1>
     </div>
-    
-    
-    <nav class="tab_row">
+
+    <nav class="danger-stripe">
       <ul class="tabs">
-        <li><button id="btn1" class="tablink tablink_active" onclick="openTab('tab1', 'btn1')">Welcome</button></li>
-        <li><button id="btn2" class="tablink" onclick="openTab('tab2', 'btn2')">Niffty Operations</button></li>
-        <li><button id="btn3" class="tablink" onclick="openTab('tab3', 'btn3')">Music</button></li>
-        <li><button id="btn4" class="tablink" onclick="openTab('tab4', 'btn4')">Stories</button></li>
+        <li><button id="btn1" onclick="openTab(1)" class="tablink tablink_active">Home</button></li>
+        <li><button id="btn2" onclick="openTab(2)" class="tablink               ">Niffty Operations</button></li>
+        <li><button id="btn3" onclick="openTab(3)" class="tablink               ">Music</button></li>
+        <li><button id="btn4" onclick="openTab(4)" class="tablink               ">Stories</button></li>
       </ul>
     </nav>
   </header>
   
   <main>
     <div id="tab1" class="tab_container">
-      <h2>Section 1</h2>
+      <h2>Welcome to my Website!</h2>
+      <br>
       <p>This is the content of Section 1.</p>
     </section>
     </div>
     
-    <div id="tab2" class="tab_container hidden" style="
-    background: linear-gradient(200deg, transparent, transparent 40%, rgba(200, 0, 255, 0.25) 45%, #e25454 60%, #e25454 100%); 
-    background-size: 100% 300%;
-    background-position: 100% 100%;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;">
+    <div id="tab2" class="tab_container hidden">
       <h2>Section 2</h2>
       <p>This is the content of Section 2.</p>
     </div>
@@ -54,7 +61,8 @@
 
     <div id="tab4" class="tab_container hidden">
       <h1>SSSSSSSSSSSSSSSSSSSSSSS</h1>
-      <p style="margin-top: 120px;">many small and big stories from across the galaxy and its history.</p>
+      <p style="margin-top:80px; line-height: 2rem;">Okay okay, I'm not <i>really</i> a writer, but I love creating content, creating stories, and characters.<br>So, this is like my little dumpster that I will throw whatever stories my brain comes up with every once in a while.</p>
+      <p style="margin-top: 60px;">many small and big stories from across the galaxy and its history.</p>
       <p style="margin-top: 32px;">some stories have Original Sound Tracks associated with them, feel free to take a listen as you read</p>
       <i>(well, or maybe after you read, it's up to you)</i>
       <div style="margin-top: 32px; width: 80%; border-color: rgb(48, 47, 47); border-width: 2px; border-style: solid; display:inline-flex; justify-content: center; text-align: center; flex-wrap: wrap;">

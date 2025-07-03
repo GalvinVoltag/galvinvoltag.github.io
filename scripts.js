@@ -3,7 +3,7 @@ function start() {
 }
 window.onload = start;
 
-function openTab(tabName, btnid) {
+function openTab(id) {
   var i, tabcontent, buttons;
   tabcontent = document.getElementsByClassName("tab_container");
   buttons = document.getElementsByClassName("tablink");
@@ -13,7 +13,7 @@ function openTab(tabName, btnid) {
   for (i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove("tablink_active")
   }
-  document.getElementById(btnid).classList.add("tablink_active")
-  document.getElementById(tabName).classList.remove("hidden");
+  document.getElementById('btn' + id).classList.add("tablink_active")
+  document.getElementById('tab' + id).classList.remove("hidden");
   window.scrollTo(0, 0)
 }

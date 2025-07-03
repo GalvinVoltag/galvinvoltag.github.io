@@ -1,113 +1,100 @@
   /* Hide scrollbar for all browsers except Firefox */
+@import url('https://fonts.cdnfonts.com/css/earthbound?styles=41024');
+@import url('https://fonts.cdnfonts.com/css/vcr-osd-mono');
+
 body::-webkit-scrollbar {
   display: none;
 }
 
-html, body {
-  scroll-behavior: smooth;
-  height: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-  margin: 0;
-}
-
-#image {
-  width: 400;
-  height: 70;
-  background-image: image-set("web_logo.png")
-}
-
-#tri {
-  width: 0;
-  height: 0;
-  border-top-width: 20px;
-  border-top-style: solid;
-  border-top-color: transparent;
-  border-right-width: 20px;
-  border-right-style: solid;
+.debug {
+  border-width: 2px;
+  border-style: solid;
   border-right-color: red;
 }
   
+.loading {
+  display: none;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color:#1f1f1f;
-}
-
-/* @keyframes fadein {
-  0% {mask-image: linear-gradient(rgba(0, 0, 0, 0),  black 100%);
-  -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 0),  black 100%);
-  margin-top: 150px;}
-  100%{mask-image: linear-gradient(rgba(0, 0, 0, 100),  black 100%);
-  -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 100),  black 100%);
-  margin-top: 200px;}
-} */
-
-
-@keyframes image-shrink {
-  to{
-    width: 200px;
-    height: 56px;
-    padding-bottom: 4px;
-  }
-}
-.title_image {
-  width: 400px;
-  height: 70px;
-  padding-bottom: 20px;
-  animation: image-shrink linear both;
-  animation-timeline: scroll();
-  animation-range: 0px 400px;
+  background-color:#1f1f1f !important;
+  font-family: 'VCR OSD Mono', sans-serif;
 }
 
 @keyframes title-shrink {
   to {
     font-size: 16px;
     line-height: 10%;
-    top: 5%;
+    margin-top: 8px;
+    p {
+      opacity: 50%;
+    }
+  }
+}
+@keyframes title-shrink-child {
+  to {
+  height: 0px;
+  margin-top: 0.3rem;
+  padding-top: 0rem;
+  font-size: 8px;
+  opacity: 50%;
   }
 }
 
-#dynamic_title {
-  font-size: 36px;
+header h1 {
   line-height: 20%;
-  top: 20%;
   margin-top: 35px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: title-shrink linear both;
-  animation-timeline: scroll();
-  animation-range: 0px 400px;
+  position: relative;
+  animation: title-shrink;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+header h1 div {
+  margin: 0px;
+  overflow: hidden;
+  height: 1rem;
+  margin-top: 0.8rem;
+  padding-top: 0.2rem;
+  font-size: 16px;
+  animation: title-shrink-child;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+header {
+  top: 0px;
+  left: 0px;
 }
 
 @keyframes fadein {
   0% {
     background-position: 100% 0%;
     margin-top: 0px;
+    margin-bottom: 230px;
     opacity: 0%;
   }
   100%{
     background-position: 100% 100%;
     margin-top: 230px;
+    margin-bottom: 0px;
     opacity: 100%;
   }
 }
 
 .tab_container {
+  font-family: 'Earthbound', sans-serif;
   text-align: center;
   padding: 6px 12px;
-  /* border: 1px solid #ccc; */
   border-top: none;
-  /* color: rgb(224, 218, 230); */
   color :white;
   margin-top: 230px;
-  background: linear-gradient(200deg, transparent, transparent 40%, rgba(200, 0, 255, 0.25) 45%, #ececec 60%, #ececec 100%); 
+  background: linear-gradient(200deg, transparent, transparent 40%, rgba(200, 0, 255, 0.25) 45%, #dad3d0 60%, #ececec 100%); 
   background-size: 100% 300%;
   background-position: 100% 100%;
   -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
+  background-clip: text;
   animation-name: fadein;
   animation-duration: 1.8s;
   text-align: center;
@@ -117,10 +104,9 @@ body {
 
 .hidden {
   display: none !important;
-  opacity: 0%;
 }
 
-.tab_row {
+.danger-stripe {
   background: repeating-linear-gradient(
   -45deg,
   #babf2d,
@@ -131,7 +117,6 @@ body {
 }
 
 .tabs {
-  align-items: center;
   display: inline-block;
   height: 0px;
 }
@@ -152,38 +137,25 @@ body {
   transform: translateY(0px);
   transition: transform, background-color 0.4s;
   transition:  0.4s;
-}
-
-.tablink:hover {
+} .tablink:hover {
   background-color: #cecece62;
-}
-
-.tablink_active:hover {
+} .tablink_active:hover {
   background-color: #1f1f1f;
-}
-
-.tablink_active {
+} .tablink_active {
   background-color: #1f1f1f;
   transform: translateY(8px);
 }
 
-.fixed {
-  position: fixed;
-}
-
-.space { margin-top: 300px; }
-
 @keyframes bgmove {
   0% {
     background-position: 0% 0%;
-    
   }
   100%{
     background-position: 2000% 0%;
   }
 }
 
-.mainheader { 
+.slideshow-colors { 
   background-color: #333;
   background-image: linear-gradient(45deg,
   rgb(11, 11, 11),
@@ -203,15 +175,6 @@ body {
   animation: bgmove 500s linear infinite;
 }
 
-@keyframes footerfix {
-  0% {
-    margin-top: 6080px;
-  }
-  100% {
-    margin-top: 680px;
-  }
-}
-
 footer {
   background-color: #333;
   color: #fff;
@@ -219,10 +182,10 @@ footer {
   padding: 1em;
   position: relative;
   width: 100%;
-  bottom: 0;
+  left: -8px;
+  bottom: -8px;
   height: 32px;
   margin-top: 680px;
-  animation: footerfix 0.5s;
 }
 
 nav {
@@ -230,19 +193,16 @@ nav {
   color: #fff;
   padding: 0.5em;
 }
-
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
 nav li {
   display: inline;
   /* margin-right: 10px; */
   margin: 0px 10px;
 }
-
 nav a {
   text-decoration: none;
   color: #fff;
@@ -250,18 +210,10 @@ nav a {
   border-radius: 5px;
   transition: background-color 0.3s;
 }
-
 nav a:hover {
   background-color: #666;
 }
 
-main {
-  padding: 20px;
-}
-
-section {
-  margin-bottom: 20px;
-}
 
 .tippedtext {
   text-decoration: none;
@@ -314,7 +266,7 @@ section {
   background:unset;
   color:unset;
   -webkit-text-fill-color: black;
-  -webkit-background-clip: unset;
+  background-clip: unset;
   animation-name: unset;
   animation-duration: unset;
   text-align: center;
