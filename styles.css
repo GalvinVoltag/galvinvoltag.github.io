@@ -66,6 +66,7 @@ header h1 div {
 header {
   top: 0px;
   left: 0px;
+  z-index: 20 !important;
 }
 
 @keyframes fadein {
@@ -97,7 +98,6 @@ header {
   background-clip: text;
   animation-name: fadein;
   animation-duration: 1.8s;
-  text-align: center;
   font-size: 20px;
   line-height: 1.3rem;
 }
@@ -249,6 +249,114 @@ nav a:hover {
   visibility: visible;
   opacity: 90%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* game stuff */
+img { 
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;                 /* Universal support since 2021   */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+
+}
+
+.game-screen {
+  background-color: var(--color);
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: 768px;
+  height: 672px;
+  z-index: 10;
+  transition: 5s;
+  box-shadow: 0px 0px 5px var(--color);
+  border-radius: 1px;
+  border-width: 6px;
+  border-style: ridge;
+  border-color: #ffffff78;
+} .game-screen:focus {
+  box-shadow: 0px 0px 80px var(--color);
+}
+
+.sprite {
+  overflow: hidden;
+  position: absolute;
+  /* img {
+    width: 50px;
+  } */
+}
+
+.blur {
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  position:fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  transition: 1s;
+}
+body:has(.game-screen:focus) .blur {
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.338);
+  transition: 5s;;
+}
+
+.collider {
+  position: absolute;
+  border-color: red;
+  border-width: 2px;
+  border-style: dotted;
+  background-color: rgba(0, 0, 255, 0.148);
+}
+
+.trigger {
+  position: absolute;
+  border-color: blue;
+  border-width: 2px;
+  border-style: dashed;
+}
+.world {
+  position: absolute;
+}
+
+@keyframes arrowanim {
+  to {
+    top: 4px;
+  }
+}
+
+.arrow {
+  animation: arrowanim;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+
+
+
+
+
+
+
+
 
 
 

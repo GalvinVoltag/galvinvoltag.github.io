@@ -32,30 +32,83 @@
 
     <nav class="danger-stripe">
       <ul class="tabs">
-        <li><button id="btn1" onclick="openTab(1)" class="tablink tablink_active">Home</button></li>
-        <li><button id="btn2" onclick="openTab(2)" class="tablink               ">Niffty Operations</button></li>
-        <li><button id="btn3" onclick="openTab(3)" class="tablink               ">Music</button></li>
+        <li><button id="btn1" onclick="openTab(1)" class="tablink tablink_active">About Me</button></li>
+        <li><button id="btn2" onclick="openTab(2)" class="tablink               ">Projects</button></li>
+        <li><button id="btn3" onclick="openTab(3)" class="tablink               ">Content</button></li>
         <li><button id="btn4" onclick="openTab(4)" class="tablink               ">Stories</button></li>
       </ul>
     </nav>
   </header>
   
   <main>
+  <div class="blur"></div>
+
+
     <div id="tab1" class="tab_container">
       <h2>Welcome to my Website!</h2>
       <br>
       <p>This is the content of Section 1.</p>
+      <br>
+      
+
+      <div id="game-legend" style="--color: rgb(0, 227, 0);"
+      class="game-screen" onclick="StartGame(this)" tabindex="0">
+        <div class="world">
+          <div class="sprite arrow" style="transform: translate(60px, 10px); width: 640px; height: 140px; opacity: 50%; ">
+            <img style="width: 120px; transform: translate(0px, 0px) rotate(-90deg);" src="https://static.vecteezy.com/system/resources/thumbnails/055/421/910/small_2x/arrow-icon-pixel-arrow-icon-8bit-arrow-png.png">
+          </div>
+          <div id="player" class="sprite" style="transform: translate(310px, 280px); width: 64px; height: 64px;">
+            <img style="width: 1936px; transform: translate(-4px, -44px);" src="Pics/Game/placeholder_spritesheet.png">
+          </div>
+          <div class="collider" style="transform: translate(0px, 666px); width: 760px; height: 30px;"></div>
+          <div class="collider" style="transform: translate(0px, -30px); width: 300px; height: 30px;"></div>
+          <div class="collider" style="transform: translate(460px, -30px); width: 300px; height: 30px;"></div>
+          <div class="collider" style="transform: translate(-30px, 0px); width: 30px; height: 760px;"></div>
+          <div class="collider" style="transform: translate(760px, 0px); width: 30px; height: 760px;"></div>
+          <div class="trigger" data-func="DoIt()" data-onetime="1" style="transform: translate(200px, -400px); width: 200px; height: 200px;"></div>
+        </div>
+      </div>
+
     </section>
     </div>
     
+
+
+
+
     <div id="tab2" class="tab_container hidden">
       <h2>Section 2</h2>
       <p>This is the content of Section 2.</p>
+      <br>
+
+      <div id="game-bunker" style="--color: rgb(0, 55, 118);"
+      class="game-screen" onclick="StartGame(this)" tabindex="1">
+        <div class="world">
+          <div id="player" class="sprite" style="width: 5rem; height: 5rem;">
+            <img style="width: 5rem;" src="https://static.tvtropes.org/pmwiki/pub/images/kris_overworld_8bit_optimized.png"></div>
+        </div>
+
+      </div>
+
     </div>
+
+
+
 
     <div id="tab3" class="tab_container hidden">
       <h2>Section 3</h2>
       <p>This is the content of Section 3.</p>
+      <br>
+
+      <div id="game-victim" style="--color: rgb(255, 0, 0);"
+      class="game-screen" onclick="StartGame(this)" tabindex="2">
+        <div class="world">
+          <div id="player" class="sprite" style="width: 5rem; height: 5rem;">
+            <img style="width: 6rem;" src="https://onlyagame.typepad.com/.a/6a00d83452030269e201bb09f1a691970d-pi"></div>
+        </div>
+
+      </div>
+
     </section>
     </div>
 
