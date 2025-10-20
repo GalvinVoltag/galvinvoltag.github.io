@@ -265,10 +265,6 @@ nav a:hover {
 
 /* game stuff */
 img { 
-    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
-    image-rendering: -moz-crisp-edges;          /* Firefox                        */
-    image-rendering: -o-crisp-edges;            /* Opera                          */
-    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
     image-rendering: pixelated;                 /* Universal support since 2021   */
     image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
@@ -280,8 +276,8 @@ img {
   position: relative;
   display: inline-block;
   overflow: hidden;
-  width: 768px;
-  height: 672px;
+  width: 700px;
+  height: 560px;
   z-index: 10;
   transition: 5s;
   box-shadow: 0px 0px 5px var(--color);
@@ -293,12 +289,9 @@ img {
   box-shadow: 0px 0px 80px var(--color);
 }
 
-.sprite {
-  overflow: hidden;
-  position: absolute;
-  /* img {
-    width: 50px;
-  } */
+canvas {
+  image-rendering: pixelated;
+  image-resolution: 256px 204px;
 }
 
 .blur {
@@ -318,40 +311,13 @@ body:has(.game-screen:focus) .blur {
   transition: 5s;;
 }
 
-.collider {
-  position: absolute;
-  border-color: red;
-  border-width: 2px;
-  border-style: dotted;
-  background-color: rgba(0, 0, 255, 0.148);
+@media (orientation: landscape) {
+  
 }
 
-.trigger {
-  position: absolute;
-  border-color: blue;
-  border-width: 2px;
-  border-style: dashed;
+@media (pointer: coarse) {
+  
 }
-.world {
-  position: absolute;
-}
-
-@keyframes arrowanim {
-  to {
-    top: 4px;
-  }
-}
-
-.arrow {
-  animation: arrowanim;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
-}
-
-
-
-
 
 
 

@@ -1,0 +1,395 @@
+export class GameSystem {
+
+    keys = {};
+    
+
+    constructor(gameElement, ctx, bg_color = "#000000FF", FPS = 30, defaultArea = new Area()) {
+        this.ctx = ctx;
+        this.bg_color = bg_color;
+        this.fps = FPS;
+        this.layers = {};
+        this.timeScales = {0: 1};
+        this.lastUpdate = Date.now();
+        this.cameraPos = new V2();
+        this.areas = {"def": defaultArea};
+        this.currentArea = this.areas["def"];
+        this.gameElement = gameElement;
+        this.enabled = true;
+    }
+
+    GameLoop() {
+        if (!this.enabled) return;
+        var now = Date.now();
+        var deltaTime = (now - this.lastUpdate) / 100;
+        this.lastUpdate = now;
+        this.ctx.rect(0, 0, this.ctx.canvas.clientWidth, this.ctx.canvas.clientHeight);
+        this.ctx.fillStyle = this.bg_color;
+        this.ctx.fill();
+        this.cameraPos = this.currentArea.limit(this.cameraPos);
+        this.ctx.setTransform(1,0,0,1, Math.round((this.ctx.canvas.clientWidth/5) - this.cameraPos.x), Math.round(this.ctx.canvas.clientHeight/5 - this.cameraPos.y));
+        let usedids = [];
+        Object.keys(this.layers).concat(Object.keys(this.currentArea.layers)).forEach((id) => {
+            if (usedids.includes(id)) 
+                return;
+            let arr = [];
+            if (this.layers[id] != null && this.currentArea.layers[id] != null)
+                arr = this.layers[id].concat(this.currentArea.layers[id]);
+            else if (this.currentArea.layers[id] == null)
+                arr = this.layers[id];
+            else
+                arr = this.currentArea.layers[id];
+
+            arr.forEach(system => {
+                let ts = this.timeScales[0];
+                if (Object.hasOwn(this.timeScales, id)) ts = this.timeScales[id];
+                if (system.Update) system.Update(deltaTime*ts);
+                if (system.LateUpdate) system.LateUpdate(deltaTime*ts);
+                if (system.Draw) system.Draw(this.ctx, deltaTime*ts);
+            })
+            usedids.push(id);
+        });
+    }
+
+    SetTimeScale(layerID, newTimeScale) {
+        this.timeScales[layerID] = newTimeScale;
+    }
+    ClearTimeScale(layerID) {
+        if (layerID == 0) this.timeScales[0] = 1;
+        else if (Object.hasOwn(this.timeScales, layerID)) delete this.timeScales[layerID];
+    }
+
+    AddArea(areaName, newArea = new Area()) {
+        this.areas[areaName] = newArea;
+    }
+
+    SetArea(areaName) {
+        if (areaName in this.areas) {
+            this.currentArea = this.areas[areaName];
+        }
+    }
+
+    Register(system, layer = 0) {
+        if (layer in this.layers) {
+            this.layers[layer].push(system);
+        } else {
+            this.layers[layer] = [];
+            this.layers[layer].push(system);
+        }
+    }
+    UnRegister(system) {
+        this.layers.forEach(layer => {
+            const index = layer.indexOf(system);
+            if (index > -1) {
+                layer.splice(index, 1);
+                return true;
+            }
+        }); return false;
+    }
+    SetLayer(system, layerid) {
+        if (this.UnRegister(system)){
+            this.Register(system, layerid);
+            return true;
+        } return false;
+    }
+
+    Start() {
+        document.addEventListener('keydown', (e) => {
+            if (document.activeElement == document.getElementById(this.gameElement.id)) {
+                e.preventDefault();
+                this.keys[e.key] = true;
+            }
+        });
+        document.addEventListener('keyup', (e) => {
+            this.keys[e.key] = false;
+        });
+        // start things here
+        setInterval(() => this.GameLoop(), 1000 / this.fps);
+    }
+
+    KeyDown(keyID) {
+        return this.keys[keyID];
+    }
+
+}
+
+
+export class Area {
+    constructor(Rect = new R(), Origin = new V2()) {
+        this.Rect = Rect;
+        this.Origin = Origin;
+        this.layers = {};
+    }
+
+    limit(position) {
+        var np = new V2(position.x, position.y);
+        let rct = this.Rect.GetRectOrigin(this.Origin)
+        if (position.x > rct.Right )
+            np.x = rct.Right;
+        else if (position.x < rct.Left )
+            np.x = rct.Left;
+        if (position.y > rct.Bottom )
+            np.y = rct.Bottom;
+        else if (position.y < rct.Top )
+            np.y = rct.Top;
+        return np;
+    }
+
+    Register(system, layer = 0) {
+        if (layer in this.layers) {
+            this.layers[layer].push(system);
+        } else {
+            this.layers[layer] = [];
+            this.layers[layer].push(system);
+        }
+    }
+    UnRegister(system) {
+        this.layers.forEach(layer => {
+            const index = layer.indexOf(system);
+            if (index > -1) {
+                layer.splice(index, 1);
+                return true;
+            }
+        }); return false;
+    }
+    SetLayer(system, layerid) {
+        if (this.UnRegister(system)){
+            this.Register(system, layerid);
+            return true;
+        } return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+export class TileMap {
+    constructor(sprite, position = new V2(), tiles = []) {
+        this.sprite = sprite;
+        this.tiles = tiles;
+        this.position = position;
+    }
+
+    Draw(ctx, deltaTime) {
+        for (let y = 0; y < this.tiles.length; y++) {
+            for (let x = 0; x < this.tiles[y].length; x++) {
+                this.sprite.frame = this.tiles[y][x];
+                this.sprite.DrawAt(ctx, deltaTime, new V2(this.position.x + x*this.sprite.frameSize.x, this.position.y + y*this.sprite.frameSize.y));
+            }
+        }
+    }
+}
+
+export class Player {
+    constructor(game, sprite, speed = 4, controls = {"up": "ArrowUp", "down": "ArrowDown", "right": "ArrowRight", "left": "ArrowLeft", "interact": "Z", "cancel": "X", "menu": "C"}) {
+        this.sprite = sprite;
+        this.position = sprite.position;
+        this.speed = speed;
+        this.controls = controls;
+        this.game = game;
+    }
+
+    GetAxis(x, y) {
+        if (x&y) { return 0;
+        } else if (y) { return -1;
+        } else if (x) { return 1;
+        } else { return 0;
+        }
+    }
+
+    Update(deltaTime) {
+        let xax = this.GetAxis(this.game.KeyDown("ArrowRight"), this.game.KeyDown("ArrowLeft"))*deltaTime*this.speed;
+        let yax = this.GetAxis(this.game.KeyDown("ArrowDown"), this.game.KeyDown("ArrowUp"))*deltaTime*this.speed;
+        this.position.x += xax;
+        this.position.y += yax;
+        this.game.cameraPos = this.position;
+        if (yax < 0)
+            this.sprite.setanimation("walk_up");
+        else if (yax > 0)
+            this.sprite.setanimation("walk_down");
+        else if (xax < 0)
+            this.sprite.setanimation("walk_left");
+        else if (xax > 0)
+            this.sprite.setanimation("walk_right");
+        else
+            this.sprite.clearanimation();
+    }
+
+    Draw(ctx, deltaTime) {
+        this.sprite.position = this.position;
+        this.sprite.DrawAt(ctx, deltaTime, this.position);
+    }
+}
+
+
+export class Sprite {
+    constructor({
+        resource,
+        frameSize,
+        frames,
+        frame,
+        scale,
+        position,
+        origin,
+        currentAnimation,
+        animations,
+    }) {
+        this.resource = resource;
+        this.frameSize = frameSize ?? new V2(this.resource.image.width, this.resource.image.height);
+        this.frames = frames ?? {0:new V2()};
+        this.frame = frame ?? 0;
+        this.scale = scale ?? new V2(1, 1);
+        this.position = position ?? new V2();
+        this.frameMap = new Map();
+        this.origin = new V2(0.5, 0.5);
+        this.animations = animations ?? {};
+        this.currentAnimation = currentAnimation ?? null;
+        this.animationTime = 0;
+    }
+
+    setanimation(id, resetTime = false) {
+        if (Object.hasOwn(this.animations, id))
+            this.currentAnimation = id;
+        if (resetTime)
+            this.animationTime = 0;
+    }
+    clearanimation(resetTime = false) {
+        this.currentAnimation = null;
+        if (resetTime)
+            this.animationTime = 0;
+    }
+
+    DrawAt(ctx, deltaTime=0, targetPos) {
+        if (!this.resource.isLoaded)
+            return;
+        if (this.currentAnimation != null) {
+            if (Math.floor(this.animationTime*this.animations[this.currentAnimation].speed) >= this.animations[this.currentAnimation].frames.length)
+                this.animationTime=0;
+            this.frame = this.animations[this.currentAnimation].frames[Math.floor(this.animationTime*this.animations[this.currentAnimation].speed)];
+            this.animationTime+=deltaTime;
+        }
+        ctx.drawImage(
+            this.resource.image,
+            this.frames[this.frame].x,
+            this.frames[this.frame].y,
+            this.frameSize.x,
+            this.frameSize.y,
+            Math.round(targetPos.x - this.origin.x*this.frameSize.x),
+            Math.round(targetPos.y - this.origin.y*this.frameSize.y),
+            this.scale.x*this.frameSize.x,
+            this.scale.y*this.frameSize.y
+        );
+    }
+
+    Draw(ctx, deltaTime=0) {
+        if (!this.resource.isLoaded)
+            return;
+        if (this.currentAnimation != null) {
+            if (Math.floor(this.animationTime*this.animations[this.currentAnimation].speed) >= this.animations[this.currentAnimation].frames.length)
+                this.animationTime=0;
+            this.frame = this.animations[this.currentAnimation].frames[Math.floor(this.animationTime*this.animations[this.currentAnimation].speed)];
+            this.animationTime+=deltaTime;
+        }
+        ctx.drawImage(
+            this.resource.image,
+            this.frames[this.frame].x,
+            this.frames[this.frame].y,
+            this.frameSize.x,
+            this.frameSize.y,
+            Math.round(this.position.x - this.origin.x*this.frameSize.x),
+            Math.round(this.position.y - this.origin.y*this.frameSize.y),
+            this.scale.x*this.frameSize.x,
+            this.scale.y*this.frameSize.y
+        );
+    }
+}
+
+
+
+
+
+
+
+
+
+export class V2 {
+    constructor(x=0, y=0) {
+        this.x = x ?? 0,
+        this.y = y ?? 0
+    }
+
+    Add(A) {
+        if (A instanceof V2)
+            return new V2(this.x+A.x, this.y+A.y);
+        else
+            return new V2(this.x+A, this.y+A);
+    }
+
+    Mul(A) {
+        if (A instanceof V2)
+            return new V2(this.x*A.x, this.y*A.y);
+        else
+            return new V2(this.x*A, this.y*A);
+    }
+
+    Div(A) {
+        if (A instanceof V2)
+            return new V2(this.x/A.x, this.y/A.y);
+        else
+            return new V2(this.x/A, this.y/A);
+    }
+
+    Neg() {
+        return new V2(-this.x, -this.y);
+    }
+}
+
+export class R {
+    constructor(Left = 0, Right = 0, Bottom = 0, Top = 0) {
+        this.A = new V2(Left, Top);
+        this.B = new V2(Right, Bottom);
+    }
+
+    GetRect(){
+        return {
+            Left: this.A.x,
+            Right: this.B.x,
+            Top: this.A.y,
+            Bottom: this.B.y
+        };
+    }
+
+    GetRectOrigin(O) {
+        return {
+            Left: O.x+this.A.x,
+            Right: O.x+this.B.x,
+            Top: O.y+this.A.y,
+            Bottom: O.y+this.B.y
+        };
+    }
+}
+
+export class AnimationFrames {
+    constructor(frames= [], speed=1) {
+        this.frames = frames,
+        this.speed = speed
+    }
+}

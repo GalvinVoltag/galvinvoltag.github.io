@@ -1,0 +1,23 @@
+{
+  "name": "personal-website",
+  "version": "6.6.6",
+  "description": "A simple website",
+  "main": "scripts.js",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts.js"
+  },
+  "author": "Galvin Voltag",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GalvinVoltag/galvinvoltag.github.io.git"
+  },
+  "keywords": [
+    "gav"
+  ],
+  "bugs": {
+    "url": "https://github.com/GalvinVoltag/galvinvoltag.github.io/issues"
+  },
+  "homepage": "https://github.com/GalvinVoltag/galvinvoltag.github.io#readme"
+}
