@@ -3,9 +3,9 @@
   "version": "6.6.6",
   "description": "A simple website",
   "main": "scripts.js",
-  "type": "module",
   "scripts": {
-    "start": "node scripts.js"
+    "start": "node scripts.js",
+    "build": "webpack --mode production"
   },
   "author": "Galvin Voltag",
   "license": "ISC",
@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/GalvinVoltag/galvinvoltag.github.io/issues"
   },
-  "homepage": "https://github.com/GalvinVoltag/galvinvoltag.github.io#readme"
+  "homepage": "https://github.com/GalvinVoltag/galvinvoltag.github.io#readme",
+  "devDependencies": {
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "webpack": "^5.103.0",
+    "webpack-cli": "^6.0.1"
+  }
 }

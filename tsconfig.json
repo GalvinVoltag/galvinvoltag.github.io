@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": "./out",
+        "target": "es6",
+        "lib": ["es2022", "es2024", "dom"],
+        "module": "es2022",
+        "jsx": "react",
+        "allowJs": true,
+        "moduleResolution": "node"
+    }
+}
