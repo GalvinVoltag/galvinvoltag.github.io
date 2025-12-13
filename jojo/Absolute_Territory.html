@@ -29,6 +29,7 @@ RLSTATE={"ext.gadget.Colors":"ready","ext.gadget.Tabber-styles":"ready","ext.gad
 <meta property="og:image:width" content="640">
 <meta property="og:image:height" content="823">
 <meta name="viewport" content="width=1120">
+<link rel="stylesheet" href="./jojo.css">
 <link rel="search" type="application/opensearchdescription+xml" href="rest.php/v1/search" title="JoJo&#039;s Bizarre Encyclopedia - JoJo Wiki (en)">
 <link rel="EditURI" type="application/rsd+xml" href="api-result251f.xml?action=rsd">
 <link rel="license" href="../creativecommons.org/licenses/by-sa/4.0/index.html">
@@ -1022,8 +1023,47 @@ Transclusion expansion time report (%,ms,calls,template)
 </div>
 </div><script>(RLQ=window.RLQ||[]).push(function(){mw.log.warn("This page is using the deprecated ResourceLoader module \"mediawiki.ui.button\".\n[1.41] Please use Codex. See migration guidelines: https://www.mediawiki.org/wiki/Codex/Migrating_from_MediaWiki_UI");mw.log.warn("This page is using the deprecated ResourceLoader module \"codex-search-styles\".\n[1.43] Use a CodexModule with codexComponents to set your specific components used: https://www.mediawiki.org/wiki/Codex#Using_a_limited_subset_of_components");mw.config.set({"wgBackendResponseTime":443,"wgPageParseReport":{"limitreport":{"cputime":"0.083","walltime":"0.151","ppvisitednodes":{"value":784,"limit":1000000},"postexpandincludesize":{"value":1526,"limit":25165824},"templateargumentsize":{"value":829,"limit":25165824},"expansiondepth":{"value":15,"limit":100},"expensivefunctioncount":{"value":19,"limit":200},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%  148.677      1 Template:LanguageHeader","100.00%  148.677      1 -total"," 67.67%  100.610     23 Template:Translatable"," 63.93%   95.047     19 Template:Languages2/Lang"," 63.09%   93.807     20 Template:Pagelang"," 60.64%   90.160     19 Template:Ifexist"]},"loops":{"limitreport-count-limited":{"value":0,"limit":1000}},"scribunto":{"limitreport-timeusage":{"value":"0.050","limit":"600"},"limitreport-virtmemusage":{"value":5455872,"limit":52428800},"limitreport-estmemusage":0},"cachereport":{"timestamp":"20251128211805","ttl":86400,"transientcontent":false}}});});</script>
 <script data-cfasync='false' async src='../cdn.intergient.com/ramp_core.js'></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a5ce54e3c8f2bf2',t:'MTc2NDM2NDY4NA=='};var a=document.createElement('script');a.src='cdn-cgi/challenge-platform/h/b/scripts/jsd/13c98df4ef2d/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"8e8e146b5c2c4112a3c27e471780bff7","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-</body>
+<script>
+	document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('touchstart', function() {
+		const tooltip = this.querySelector('.tooltiptext');
+        if (tooltip) {
+			tooltip.style = `transform: translateX(-50%) !important`;
+            const rect = tooltip.getBoundingClientRect();
+            
+            if (rect.left < 0) {
+				const newtranslate = (100 / (rect.width / (-rect.left + 10))) - 50;
+                tooltip.style = `transform: translateX(${newtranslate}%) !important`;
+				console.log("left");
+				console.log(tooltip);
+            } else if (rect.right > window.innerWidth) {
+				const newtranslate = (100 / (rect.width / (rect.right - window.innerWidth + 23))) + 50;
+                tooltip.style = `transform: translateX(-${newtranslate}%) !important`;
+				console.log(tooltip);
+            }
+        }
+    });
+	link.addEventListener('mouseenter', function() {
+        const tooltip = this.querySelector('.tooltiptext');
+        if (tooltip) {
+			tooltip.style = `transform: translateX(-50%) !important`;
+            const rect = tooltip.getBoundingClientRect();
+            
+            if (rect.left < 0) {
+				const newtranslate = (100 / (rect.width / (-rect.left + 10))) - 50;
+                tooltip.style = `transform: translateX(${newtranslate}%) !important`;
+				console.log("left");
+				console.log(tooltip);
+            } else if (rect.right > window.innerWidth) {
+				const newtranslate = (100 / (rect.width / (rect.right - window.innerWidth + 23))) + 50;
+                tooltip.style = `transform: translateX(-${newtranslate}%) !important`;
+				console.log(tooltip);
+            }
+        }
+    });
+});
+
+</script></body>
 
 <!-- Mirrored from jojowiki.com/Whitesnake by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Nov 2025 21:28:08 GMT -->
 </html>
