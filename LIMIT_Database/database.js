@@ -4,10 +4,15 @@ const database = {
   "l.i.m.i.t team": { "direct": "limit" },
   "l.i.m.i.t": { "direct": "limit" },
   "limit": {
-    "prefix": "[boxcolor:cyan]",
-    "date": "2 Nissan 1994",
+    "prefix": "[boxcolor:blue]",
+    "date": "2 Nissan 1884",
     "entry": `[color:cyan]
-              L.I.M.I.T (aka)`,
+              L.I.M.I.T (aka) Limited Interdimensional Machine of Intelligence Terminal, is an 
+              open source project lead by the LIMIT team for the sole purpose of reducing the 
+              need for information for those who are in an unstable reality. <br><br>
+              The LIMIT Team operates in stable realities, documenting information that may, will, 
+              or is leaking to the outside. They usually wear their black suits and prefer to operate
+              undetected by the residents of stable realities. `,
   },
   "universe id number": { "direct": "universe id" },
   "universe id": {
@@ -86,16 +91,16 @@ const database = {
   "help": {
     "prefix": "[boxcolor:#00ffff]",
     "date": "1 Nissan 1887",
-    "entry": `[color:#00ffff]
+    "entry": `[color:#00ffff] [speed:10]
               AVAILABLE COMMANDS: <br>
-              · lim - Information about L.I.M.I.T system <br>
-              · hyperbolic highway - Non-Euclidean transport tech <br>
-              · reality bleed - Universe boundary instability <br>
-              · quantum anchor - Spacetime stabilization device <br>
-              · limit team - About the field operatives <br>
-              · temporal displacement - Time desynchronization <br>
-              · causality fragmentation - Critical timeline instability <br>
-              <br>
+              · lim - Information about L.I.M.I.T system <br> [wait:6]
+              · hyperbolic highway - Non-Euclidean transport tech <br> [wait:6]
+              · reality bleed - Universe boundary instability <br> [wait:6]
+              · quantum anchor - Spacetime stabilization device <br> [wait:6]
+              · limit team - About the field operatives <br> [wait:6]
+              · temporal displacement - Time desynchronization <br> [wait:6]
+              · causality fragmentation - Critical timeline instability <br> [wait:6]
+              <br> [wait:3] [speed:1]
               [color:#ffff00]Type any query to search the database.`,
   },
 };
@@ -115,11 +120,13 @@ var resetColorPerQuery = true;
 var skipstart = 0;
 var skipend = 0;
 var skip = false;
+var waitTime = 0;
+var maxLettersPerFrame = 24;
 
 function PartialParseNumber(wholeText) {
   var i = 0;
   var b = false;
-  while ((![" ", "·"].includes(wholeText[i]) || b) && i < wholeText.length && i < 20) {
+  while ((![" ", "·"].includes(wholeText[i]) || b) && i < wholeText.length && i < maxLettersPerFrame) {
     if (wholeText[i] == "<") {
       i += wholeText.indexOf(">") - i + 1;
       continue;
@@ -135,9 +142,9 @@ function PartialParseNumber(wholeText) {
     }
     i+=1;
   }
-  // while ([" ", "·", "."].includes(wholeText[i+1]) && i < wholeText.length && i < 10) {
-  //   i+=1;
-  // }
+  while ([" ", "·", "."].includes(wholeText[i+1]) && i < wholeText.length && i < 10) {
+    i+=1;
+  }
   // if (i==0) {
   //   i+=1;
   //   console.log("i had to be increased");
@@ -147,26 +154,48 @@ function PartialParseNumber(wholeText) {
 
 function RunCommand(text) {
   if (text[0]=="[") {
-      const command = text.substring(1, text.indexOf(":"));
-      const input = text.substring(text.indexOf(":")+1, text.indexOf("]"));
-      console.log(command + ":" + input);
-      if (command == "color") {
-        if (input) color = input;
-        else color = "#ffff00";
-        contentNumber+=1;
-        document.querySelector('#out'+queryNumber).innerHTML += 
-        `<p id="con${contentNumber}" class="crt-glow crt-text" style="--color:${color};"></p>`;
-      } else if (command == "wait") {
-
-      } else if (command == "boxcolor" || command == "bordercolor") {
-        if (input) borderColor = input;
-        else borderColor = "#ffff00";
-        document.getElementById('out' + queryNumber).style.setProperty('--color', borderColor);
-      }
+    var command;
+    var input;
+    if (text.indexOf(":") == -1) {
+      command = text.substring(1, text.length-1);
+    } else {
+      command = text.substring(1, text.indexOf(":"));
+      input = text.substring(text.indexOf(":")+1, text.indexOf("]"));
     }
+    console.log(command + ":" + input + "   <--" + text);
+    if (command == "color") 
+    {
+      if (input) color = input;
+      else color = "#ffff00";
+      contentNumber+=1;
+      document.querySelector('#out'+queryNumber).innerHTML += 
+      `<p id="con${contentNumber}" class="crt-glow crt-text" style="--color:${color};"></p>`;
+    } 
+    else if (command == "wait") 
+    {
+      if (input) waitTime += Number(input);
+      else waitTime += 10;
+      console.log("will wait" + waitTime);
+    } 
+    else if (command == "boxcolor" || command == "bordercolor") 
+    {
+      if (input) borderColor = input;
+      else borderColor = "#ffff00";
+      document.getElementById('out' + queryNumber).style.setProperty('--color', borderColor);
+    }
+    else if (command == "speed") 
+    {
+      if (input) maxLettersPerFrame = Number(input);
+      else maxLettersPerFrame = 24;
+    }
+  }
 }
 
 function GlobalUpdate() {
+  if (waitTime > 0) {
+    waitTime -= 1;
+    return;
+  }
   // console.log(requestedText);
   if (requestedText) {
     if (inputAllowed) {
@@ -186,9 +215,10 @@ function GlobalUpdate() {
       skipstart = 0;
       skipend = 0;
     }
+    if (waitTime > 0) return;
     document.querySelector('#out' + queryNumber).querySelector('#con' + contentNumber).innerHTML += requestedText.substring(0, cutLength);
     requestedText = requestedText.slice(cutLength);
-    window.scrollTo(0, document.body.scrollHeight - 1800);
+    window.scrollTo(0, document.body.scrollHeight);
   } else {
     if (inputAllowed==false && resetColorPerContent) {
         color = "#ffff00";
@@ -211,14 +241,15 @@ document.querySelector('#input').addEventListener('keydown', function(event) {
       var entry = inputText;
       if (database[inputText]["direct"])
         entry = database[inputText]["direct"]; 
+
       if (database[entry]["prefix"])
         htmlValue += `${database[entry]["prefix"]}`
-      htmlValue += `UPDATED:     ${database[entry]["date"]} <br>`
+      htmlValue += `UPDATED: [speed:1]    ${database[entry]["date"]} <br> [wait]`
       if (database[entry]["universeid"])
-        htmlValue += `UNIVERSE ID: ${database[entry]["universeid"]} <br>`
+        htmlValue += `UNIVERSE ID: ${database[entry]["universeid"]} <br> [wait]`
       htmlValue += `
       <br>
-      ENTRY:<br>
+      ENTRY:<br> [wait] [speed]
       ${database[entry]["entry"]}
       `;
     } else {
@@ -233,7 +264,7 @@ document.querySelector('#input').addEventListener('keydown', function(event) {
       // requestedText = `<div>Command not found: ${inputText}</div>`;
     
 
-    window.scrollTo(0, document.body.scrollHeight - 1800);
+    // window.scrollTo(0, document.body.scrollHeight - height*1.8);
 
     document.querySelector(".scroller").innerHTML
 

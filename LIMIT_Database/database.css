@@ -1,4 +1,10 @@
 
+/* hide page scrollbar */
+html { scrollbar-width: none; } /* Firefox */
+body { -ms-overflow-style: none; } /* IE and Edge */
+body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
+/* end hide page scrollbar */
+
 .crt {
   background-image: linear-gradient(to top, #000000, #000000, #332924, #333333);
   background-size: 100% 3px;
@@ -17,7 +23,7 @@ body {
 }
 
 .scroller {
-  margin-bottom: 90vh;
+  margin-bottom: 90px;
 }
 
 .fixed {
@@ -82,7 +88,7 @@ body {
 .vertical {
   display: flex;
   
-  min-height: 100vh;
+  /* min-height: 100vh; */
   flex-direction: column; /* stack vertically */
 }
 
