@@ -1,0 +1,17 @@
+body {
+    background-color: #242424;
+    color: #CACACA;
+    display: block;
+    max-width: 40rem;
+    font-family: monospace;
+    padding: 50px;
+    margin: 1rem auto;
+    outline: 2px solid white;
+}
+
+a {
+    color: cyan;
+}
+a::after {
+    color: red;
+}

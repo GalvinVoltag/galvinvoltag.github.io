@@ -15,14 +15,29 @@
       <div>
         <div class="scroller">
           <div id="output">
-              
+              <!-- <div id="out" class="crt-outline" style="--color:#ffff00">
+                <p id="con0" class="crt-glow crt-text" style="--color:#ffff00;">
+                  Welcome to the L.I.M.I.T <br>
+                  last update: 2 Fermi 1887 - 13 A.M.
+                  <br><br>
+                  We are here to provide information to those who suffer from universal instability.
+                </p>
+              </div> -->
           </div>
         </div>
       </div>
 
 
     </div>
+    <div class="bloom"></div>
     <input id="input" style="margin-top: auto;" class="fixed" autocomplete="off"">
+    
     <script src="./database.js"></script>
+    
+    <svg style="position: absolute; width: 0; height: 0;">
+      <filter id="horizontal-blur" x="0" y="0">
+        <feGaussianBlur stdDeviation="1 0.2" />
+      </filter>
+    </svg>
   </body>
 </html>

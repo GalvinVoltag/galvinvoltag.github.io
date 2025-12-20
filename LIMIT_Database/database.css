@@ -6,8 +6,8 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Ch
 /* end hide page scrollbar */
 
 .crt {
-  background-image: linear-gradient(to top, #000000, #000000, #332924, #333333);
-  background-size: 100% 3px;
+  background-image: linear-gradient(to top, #332924, #000000, #332924, #333333);
+  background-size: 100% 4px;
 
   
   color: transparent;
@@ -26,6 +26,18 @@ body {
   margin-bottom: 90px;
 }
 
+.bloom {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  
+  backdrop-filter: url(#horizontal-blur);
+}
+
 .fixed {
   --color: #ffff00;
   position: fixed;
@@ -34,8 +46,8 @@ body {
   width: 100vw;
   z-index: 999;
 
-  background-image: linear-gradient(to top, var(--color), var(--color), #333333, #333333);
-  background-size: 100% 3px;
+  background-image: linear-gradient(to top, #333333, var(--color), #333333, #333333);
+  background-size: 100% 4px;
 
   font-family: "VT323", sans-serif !important;
   font-style: normal;
