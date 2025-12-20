@@ -27,7 +27,7 @@ const database = {
   },
   
   "reality bleed": {
-    "prefix": "[boxcolor:#ff0000]",
+    "prefix": "[boxcolor:orange]",
     "universeid": "ΩQ·CORE.0001·ΦALERT·R0",
     "date": "1 Tevet 1988",
     "entry": `[color:#ff0000]
@@ -39,7 +39,7 @@ const database = {
   },
   
   "quantum anchor": {
-    "prefix": "[boxcolor:#00ff00]",
+    "prefix": "[boxcolor:yellow]",
     "universeid": "ΩQ·5B82.9156·Φ44ε673m1·R2",
     "date": "22 Iyar 1989",
     "entry": `[color:#00ff00]
@@ -64,7 +64,7 @@ const database = {
   },
   
   "temporal displacement": {
-    "prefix": "[boxcolor:#ff00ff]",
+    "prefix": "[boxcolor:orange]",
     "universeid": "ΩQ·3C94.4521·Φ67ε881p9·R3",
     "date": "18 Elul 1990",
     "entry": `[color:#ff00ff]
@@ -76,7 +76,7 @@ const database = {
   },
   
   "causality fragmentation": {
-    "prefix": "[boxcolor:#ff0000]",
+    "prefix": "[boxcolor:orange]",
     "universeid": "ΩQ·CORE.0003·ΦALERT·R0",
     "date": "30 Shevat 1992",
     "entry": `[color:#ff0000]
@@ -89,7 +89,7 @@ const database = {
   },
 
   "help": {
-    "prefix": "[boxcolor:#00ffff]",
+    "prefix": "[boxcolor:blue]",
     "date": "1 Nissan 1887",
     "entry": `[color:#00ffff] [speed:10]
               AVAILABLE COMMANDS: <br>
@@ -103,13 +103,31 @@ const database = {
               <br> [wait:3] [speed:1]
               [color:#ffff00]Type any query to search the database.`,
   },
+  "gerson berries": {
+    "prefix": "[boxcolor:green]",
+    "date": "1 Nissan 1887",
+    "entry": `[color:lightgreen] [speed:10]
+              Gerson Berries are fruits, usually frowing on Ceilinus Lampus, a plant that grows in low
+              air pressures and high temperatures, such as 0.1 atm and 400 degrees celcius.`,
+  },
+  "hostile territory": {"direct": "ωq·core.0001·φalert·r0"},
+  "ωq·core.0001·φalert·r0": {
+    "prefix": "[boxcolor:yellow] UNIVERSE TITLE: Hostile Territory <br>",
+    "date": "13 Centaurus 1889",
+    "entry": `[speed:10]
+              This universe is pretty early in its life so most of it is
+              inhabitable.`,
+  },
 };
 
 setInterval(() => GlobalUpdate(), 1000 / 24);
 
 var requestedText = `
-This is the L.I.M.I.T Database <br>
-last update: 2 Nissan 1887 - 33 A.M.`;
+Welcome to the L.I.M.I.T <br>
+last update: 2 Fermi 1887 - 13 A.M.
+<br><br>
+We are here to provide information to those who suffer from universal instability.
+`;
 var inputAllowed = true;
 var queryNumber = 0;
 var contentNumber = 0;
@@ -126,9 +144,12 @@ var maxLettersPerFrame = 24;
 function PartialParseNumber(wholeText) {
   var i = 0;
   var b = false;
-  while ((![" ", "·"].includes(wholeText[i]) || b) && i < wholeText.length && i < maxLettersPerFrame) {
+  var loopDetect = 0;
+  while ((![" ", "·"].includes(wholeText[i]) || b) && i < wholeText.length && i < maxLettersPerFrame && loopDetect < 50) {
+    loopDetect+=1;
     if (wholeText[i] == "<") {
-      i += wholeText.indexOf(">") - i + 1;
+      i += wholeText.substring(i).indexOf(">")+1;
+      // console.log(wholeText[i]);
       continue;
     }
     if (wholeText[i] == "[") {
@@ -145,10 +166,6 @@ function PartialParseNumber(wholeText) {
   while ([" ", "·", "."].includes(wholeText[i+1]) && i < wholeText.length && i < 10) {
     i+=1;
   }
-  // if (i==0) {
-  //   i+=1;
-  //   console.log("i had to be increased");
-  // }
   return i+1;
 }
 
