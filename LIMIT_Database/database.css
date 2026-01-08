@@ -6,14 +6,9 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Ch
 /* end hide page scrollbar */
 
 .crt {
-  background-image: linear-gradient(to top, #332924, #000000, #332924, #333333);
-  background-size: 100% 4px;
+  background-color: #332924;
 
-  
-  color: transparent;
   font-size: 50px;
-  background-clip: text;
-    -webkit-background-clip: text;
 }
 
 body {
@@ -26,18 +21,6 @@ body {
   margin-bottom: 90px;
 }
 
-.bloom {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: 1000;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  
-  backdrop-filter: url(#horizontal-blur);
-}
-
 .fixed {
   --color: #ffff00;
   position: fixed;
@@ -46,8 +29,9 @@ body {
   width: 100vw;
   z-index: 999;
 
-  background-image: linear-gradient(to top, #333333, var(--color), #333333, #333333);
-  background-size: 100% 4px;
+  /* background-image: linear-gradient(to top, #333333, var(--color), #333333, #333333);
+  background-size: 100% 4px; */
+  background-color: var(--color);
 
   font-family: "VT323", sans-serif !important;
   font-style: normal;
@@ -62,7 +46,7 @@ body {
 
 .crt-outline {
   --color: #ffff00;
-  border-width: 2px;
+  border-width: 3px;
   border-color: var(--color);
   border-style: dashed;
   font-family: "VT323", sans-serif !important;
@@ -75,14 +59,14 @@ body {
 
 .crt-text {
   --color: #ffff00;
-  background-image: linear-gradient(to top, var(--color), var(--color), #333333, #333333);
-  background-size: 100% 3px;
+  /* background-image: linear-gradient(to top, var(--color), var(--color), #333333, #333333);
+  background-size: 100% 3px; */
 
   font-family: "VT323", sans-serif !important;
   font-style: normal;
   display: inline;
   /* text-shadow: 0 0 10px #ffff0099; */
-  color: transparent;
+  color: var(--color);
   /* font-family: "Courier New", monospace; */
   font-size: 28px;
   background-clip: text;
@@ -104,13 +88,9 @@ body {
   flex-direction: column; /* stack vertically */
 }
 
-.crt-glow {
-  --color: #ffff00;
-  filter: drop-shadow(0 0 10px var(--color));
-  /* You can stack multiple drop-shadows for stronger glow! */
-}
+
 .crt-image {
-  background-image: linear-gradient(to top, #ffff00, #ffff00, #333333, #333333);
+  background-image: linear-gradient(to top, #ffff00, #ffff00, #ffff00, #ffff00);
   background-size: 100% 3px;
 
   width: 500px;

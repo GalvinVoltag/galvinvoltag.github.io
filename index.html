@@ -9,11 +9,64 @@
   <link rel="icon" type="image/x-icon" href="https://cdn.bsky.app/img/avatar/plain/did:plc:kak2dhoazdednytmbpwx7bpd/bafkreigaclnxmmwsmbpi4fy55bxo66ripbjyntlh5mqkb6b3tj74ocdo2e@jpeg">
 </head>
 <body>
-  <div>
-    asdasd
+  <div class="tabcontainer">
+    <div id="0" class="tab">tab 0</div>
   </div>
-  <a href="./LIMIT_Database/database-cli.html">click here</a>
+  <div class="box">
+    <div>
+      asdasd
+    </div>
+    <a href="./LIMIT_Database/database-cli.html">click here</a>
+    <img src="https://www.gamegrin.com/assets/game/voices-of-the-void/screenshots/_resampled/SetWidth640-voices-of-the-void-screenshots-3.jpg">
+    this image is here to test this page's abilities of rendering one.
+  </div>
+
+
   <script src="index.js"></script>
   <script type="module" src="./out/bundle.js"></script>
+
+  <div class="crt-distortion"></div>
+  <div class="scanlines"></div>
+  <svg style="position: absolute; width: 0; height: 0;">
+    <filter id="chromatic-aberration" x="-20%" y="-20%" width="140%" height="140%">
+      <!-- Original (green channel in center) -->
+      <feColorMatrix in="SourceGraphic" type="matrix"
+        values="0 0 0 0 0
+                0 1 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0" 
+      result="green"/>
+      
+      <!-- Red shifted right -->
+      <feOffset in="SourceGraphic" dx="2" dy="0" result="redOffset"/>
+      <feColorMatrix in="redOffset" type="matrix"
+        values="1 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0" 
+      result="red"/>
+      
+      <!-- Blue shifted left -->
+      <feOffset in="SourceGraphic" dx="-2" dy="0" result="blueOffset"/>
+      <feColorMatrix in="blueOffset" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 1 0 0
+                0 0 0 1 0" 
+      result="blue"/>
+
+      <!-- Blur the original image to create bloom -->>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="bloom"/>
+      <feComponentTransfer in="bloom" result="adjusted-bloom">
+        <feFuncA type="linear" slope="0.2"/> <!-- 0.3 = 30% intensity -->
+      </feComponentTransfer>
+      
+      <!-- Combine all channels -->
+      <feBlend mode="screen" in="red" in2="green" result="redgreen"/>
+      <feBlend mode="screen" in="redgreen" in2="blue" result="all"/>
+      <feBlend mode="screen" in="all" in2="adjusted-bloom"/>
+      <feGaussianBlur stdDeviation="0.7 0.2" />
+    </filter>
+  </svg>
 </body>
 </html>

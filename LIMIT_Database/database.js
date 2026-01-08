@@ -14,6 +14,54 @@ const database = {
               or is leaking to the outside. They usually wear their black suits and prefer to operate
               undetected by the residents of stable realities. `,
   },
+  "dead pumpkin head": {
+    "prefix": "[boxcolor:orange]",
+    "date": "12 Nexus 1865",
+    "entry": `[color:orange]
+    The Dead Pumpkin Head is a punpkin head from the Late Night Knight Wall town. He is a well known
+    and feared mafia boss who prefers to deal with the problems himself, rather than assigning someone.
+    His most identifying features are his purple suit, punpkin head, revolver, and magic. His most
+    favorite magic is seemingly fire and soul magic, as he is seen keeping his favorite souls trapped 
+    in jars in the trunk of his car. He never speaks besides short evil laughters such as "ah hah hah"
+    or "ha ha ha"
+    
+    `
+  },
+  "universe classification": {
+    "prefix": "[boxcolor:cyan]",
+    "date": "33 Neumann 1978",
+    "entry": `[color: cyan]
+              LIMIT team has a standardized system of assigning universes and smaller realities
+              unique identity strings, called universe IDs. The rules are as follows. [wait] <br> <br>
+              1. Universe/Reality Class: this character identifies the type of Universe/Reality. <br>
+              . 1.1. "Ω" identifies Universes with residents. These universes are in some places hospitable.
+              Their ages are usually in between 13 billion and 63 billion years. <br>
+              . 1.2. "Δ" identifies uninhabited Universes. These universes are hostile to all life and are 
+              usually too young to ever evolve one. Most of them are younger than 12 billion years. <br>
+              . 1.3. "-Δ" identigies no longer uninhabited Universes that are too old to ever evolve life
+              ever again in their lifetime. This usually identifies Universes older than 70 billion years old. <br>
+              . 1.4. "Σ" identifies Universes that are themselves artificial, or artificially maintained. They
+              are usually inhabited by residents but an autonomous system could theoretically sustain a Universe
+              too. These universes are usually fighting against instability, diseases or old age. <br>
+              . 1.5. "Φ" identifies dead, uninhabited and hostile universes. These universes are either died by
+              natural causes, old age, diseases, or have been murdered. These universes have increasing instability
+              and are not suitable for any contact including fly-by.<br>
+              2. Quantum Signature: this section is marked with the "Q" character, and identifies the quantum fingerprint
+              of the universe. All quantum phenomena originating from a universe always obeys to collapse
+              functions associated with these two numbers. For those who understand, these numbers are coordinates
+              in hypertemporal axes that point to the collapse patterns of quantum phenomena. As it is the law, 
+              point intersection of these two numbers in monotemporal space gives out the required mass/energy*volume
+              for an object to exist as macroscophic objects, that obey individual laws of physics. <br>
+              3. Universal Constant: this number is marked with the "G" character, and identifies the Universal
+              Constant. It may help to calculate the gravitational forces, vacumm forces, dark energy constant, and
+              dark matter composition depending on the dominant laws of physics. The first part is negative power
+              of ten, and the secon is the number with decimal point erased. <br>
+              4. Revision Count: the number of resets the Universe has gone through. This number usually doesn't exist
+              due to the rarity of this phenomena. As this number goes up, the amount of angelic force decreases 
+              in a Universe. <br> <br>
+              Example ID: "Ω.Q·A7F2.3B91.G·25ε065"
+              `
+  },
   "universe id number": { "direct": "universe id" },
   "universe id": {
     "prefix": "[boxcolor:cyan]",
@@ -48,19 +96,6 @@ const database = {
               unstable realities. Generates a 50-meter sphere of normalized causality. 
               Battery life: 72 hours. [color:#ff8800]WARNING: Do not operate near 
               hyperbolic highways or active rifts.`,
-  },
-  
-  "limit team": {
-    "prefix": "[boxcolor:cyan]",
-    "universeid": "ΩQ·2E4A.7193·Φ18ε299r8·R1",
-    "date": "9 Av 1987",
-    "entry": `[color:cyan]
-              Interdimensional research organization responsible for documenting parallel 
-              universes and providing aid to realities experiencing instability. 
-              Field agents wear black suits and operate primarily in stable universes, 
-              collecting data while maintaining minimal interference with local populations. 
-              [color:#ffff00]If you can see this message, your reality is stable enough 
-              to receive LIMIT transmissions.`,
   },
   
   "temporal displacement": {
@@ -254,7 +289,14 @@ document.querySelector('#input').addEventListener('keydown', function(event) {
     const inputText = event.target.value.toLowerCase();
 
     var htmlValue = "";
-    if (database[inputText]) {
+    if (inputText == "list all entries") {
+      htmlValue += `  ALL AVAILABLE ENTRIES <br> -------------------------- <br>`;
+      for (const [key, value] of Object.entries(database)) {
+        if (!value["direct"])
+          htmlValue += `${key} <br>`
+      }
+    }
+    else if (database[inputText]) {
       var entry = inputText;
       if (database[inputText]["direct"])
         entry = database[inputText]["direct"]; 

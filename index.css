@@ -1,9 +1,35 @@
 body {
     background-color: #242424;
     color: #CACACA;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+img {
+    --color: cyan;
+    border-width: 0px 0px 0px 5px;
+    border-color: var(--color);
+    border-style: solid;
+    max-width: 40rem;
+}
+
+.tabcontainer {
     display: block;
     max-width: 40rem;
-    font-family: monospace;
+    margin: 0rem auto;
+}
+
+.tab {
+    outline-width: 0px 5px 5px 5px;
+    outline-style: solid;
+    display: block;
+}
+
+.box {
+    background-color: #242424;
+    color: #CACACA;
+    display: block;
+    max-width: 40rem;
     padding: 50px;
     margin: 1rem auto;
     outline: 2px solid white;
@@ -14,4 +40,29 @@ a {
 }
 a::after {
     color: red;
+}
+
+.scanlines {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  
+  background-image: linear-gradient(to top, #33292400, #000000, #33292400, #33333300);
+  background-size: 100% 3px;
+}
+
+.crt-distortion {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  
+  backdrop-filter: url(#chromatic-aberration);
 }
